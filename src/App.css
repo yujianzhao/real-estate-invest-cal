@@ -18,8 +18,24 @@
   font-size: 1.5em;
 }
 
-.App-intro {
+.App-frame {
   font-size: large;
+  margin: 2em;
+  width: 1000px;
+  display: inline-block;  
+}
+
+.App-box {
+  border: 1px solid black;
+  padding: 8px;
+  margin: 8px;
+  width: 400px;
+  display: inline-block;
+  text-align: left;  
+}
+
+.App-box input {
+  margin: 1em 0;
 }
 
 @keyframes App-logo-spin {
