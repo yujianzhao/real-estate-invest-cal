@@ -9,10 +9,12 @@ export class CalROI extends Component {
       closingCost: 0,
       rehabBudget: 0,
       roiMisc: 0,
-      totalInvestment: 0
+      totalInvestment: 0,
+      ROI: 0,
+      Notes: ''
     };
-    this.annualCashFlow = 12*(this.props.value.totalMonthlyIncome-this.props.value.totalMonthlyExpense);
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.addNotes = this.addNotes.bind(this);    
   }
 
   handleInputChange(event) {
@@ -22,10 +24,25 @@ export class CalROI extends Component {
     this.setState({
       [name]: +value,
     }, () => {
-      const total = addAllStateVal(this.state, ['totalInvestment']);
+      const total = addAllStateVal(this.state, ['totalInvestment', 'Notes', 'ROI']);
+
       this.setState({
         totalInvestment: +total
+      }, () => {
+        this.setState({
+          ROI: (((12*(this.props.value.totalMonthlyIncome-this.props.value.totalMonthlyExpense)) / this.state.totalInvestment)*100).toFixed(2)
+        }, () => {
+          this.props.change(this.state)            
+        })
       });
+    });
+  }
+
+  addNotes(event) {
+    this.setState({
+      [event.target.name]: event.target.value,
+    }, () => {
+      this.props.change(this.state)            
     });
   }
 
@@ -52,9 +69,16 @@ export class CalROI extends Component {
         <label htmlFor="roiCashFlowTotalInvestment">Annual Cash Flow / Total Investment: </label>
         <input type="text" name="roiCashFlowTotalInvestment" readOnly
           value={12*(this.props.value.totalMonthlyIncome-this.props.value.totalMonthlyExpense) + ' / ' + this.state.totalInvestment} /><br />
-        <label htmlFor="roi">ROI: </label>
-        <input type="text" name="roi" readOnly
+        <label htmlFor="ROI">ROI (%): </label>
+        <input type="text" name="ROI" readOnly
           value={(((12*(this.props.value.totalMonthlyIncome-this.props.value.totalMonthlyExpense)) / this.state.totalInvestment)*100).toFixed(2)} /><br />
+
+        <br />
+        <br />
+        <br />
+        <h3>Notes:</h3>
+        <textarea rows="18" cols="50" name="Notes"
+          onChange={this.addNotes}></textarea>
       </div>
     );
   }

@@ -5,28 +5,27 @@ import { CalIncome } from './CalIncome.jsx';
 import { CalCashFlow } from './CalCashFlow.jsx';
 import { CalExpense } from './CalExpense.jsx';
 import { CalROI } from './CalROI.jsx';
+import { CalExport } from './CalExport.jsx';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       totalMonthlyIncome: 0,
-      totalMonthlyExpense: 0
+      totalMonthlyExpense: 0,
+      monthlyCashFlow: 0,
+      ROI: 0,
+      Notes: ''
     };
-    this.handleInputChange = this.handleInputChange.bind(this);    
+    this.handleInputChange = this.handleInputChange.bind(this);
   }
 
-  handleInputChange(state) {
-    if (state.hasOwnProperty('totalMonthlyIncome')) {
+  handleInputChange(dataInput) {
+    this.setState(dataInput, () => {
       this.setState({
-        totalMonthlyIncome: state.totalMonthlyIncome
+        monthlyCashFlow: (this.state.totalMonthlyIncome - this.state.totalMonthlyExpense)
       });
-    }
-    if (state.hasOwnProperty('totalMonthlyExpense')) {
-      this.setState({
-        totalMonthlyExpense: state.totalMonthlyExpense
-      });
-    }
+    });
   }
 
   render() {
@@ -40,8 +39,9 @@ class App extends Component {
           <CalIncome change={this.handleInputChange} />
           <CalCashFlow value={this.state} />
           <CalExpense change={this.handleInputChange}  />
-          <CalROI value={this.state} />
+          <CalROI value={this.state} change={this.handleInputChange}/>
         </div>
+        <CalExport value={this.state}></CalExport>
       </div>
     );
   }

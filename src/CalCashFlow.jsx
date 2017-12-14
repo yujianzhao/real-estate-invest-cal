@@ -9,10 +9,10 @@ export class CalCashFlow extends Component {
         <input type="text" name="cashFlowIncomeExpense" readOnly
           value={this.props.value.totalMonthlyIncome + 
           ' - ' + this.props.value.totalMonthlyExpense + 
-          ' = ' + (this.props.value.totalMonthlyIncome-this.props.value.totalMonthlyExpense)} /><br />
+          ' = ' + (this.props.value.totalMonthlyIncome - this.props.value.totalMonthlyExpense)} /><br />
         <label htmlFor="monthlyCashFlow">Monthly Cash Flow: </label>
         <input type="number" name="monthlyCashFlow" readOnly
-          value={(this.props.value.totalMonthlyIncome-this.props.value.totalMonthlyExpense)} /><br />
+          value={(this.props.value.totalMonthlyIncome - this.props.value.totalMonthlyExpense)} /><br />
       </div>
     );
   }

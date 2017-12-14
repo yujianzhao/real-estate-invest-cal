@@ -25,7 +25,7 @@ export class CalIncome extends Component {
       this.setState({
         totalMonthlyIncome: +total
       }, () => {
-        this.props.change(this.state)        
+        this.props.change(this.state)
       });
     });
   }
