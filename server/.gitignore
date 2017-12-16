@@ -4,6 +4,7 @@
 /secret.ts
 
 # compiled output
+/client
 /dist/*
 !/dist/public
 /dist
