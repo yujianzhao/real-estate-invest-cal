@@ -1,6 +1,6 @@
 {
 	"apps": [{
-		"name": "real-estate-roi-calculator",
+		"name": "real-estate-cal",
 		"script": "./dist/bin/www.js",
 		"env_production": {
 			"NODE_ENV": "production"

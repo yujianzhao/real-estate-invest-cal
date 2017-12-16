@@ -2,6 +2,7 @@
   "name": "real-estate-invest-cal",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://jbosoft.com/app/real-estate-cal",
   "dependencies": {
     "react": "^16.2.0",
     "react-csv": "^1.0.8",
